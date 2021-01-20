@@ -14,7 +14,7 @@ public class PlayerControl : MonoBehaviour
     private static GameObject sword;
 
     public bool weaponUse = false;
-
+    public bool isMoving = false;
 
 
 
@@ -56,12 +56,12 @@ public class PlayerControl : MonoBehaviour
         {
             // 更新body的坐标
             Vector3 targetBodyPos = hammerHead.position - mouseVec;
-            
             Vector3 force = (targetBodyPos - body.position) * jump;
             body.GetComponent<Rigidbody2D>().AddForce(force);
             // 设置刚体速度
             body.GetComponent<Rigidbody2D>().velocity = Vector2.ClampMagnitude(
                 body.GetComponent<Rigidbody2D>().velocity, 6);
+            isMoving = true;
         }
 
        
