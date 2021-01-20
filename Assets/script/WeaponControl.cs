@@ -17,7 +17,7 @@ public class WeaponControl : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("物品拾取" + collision.gameObject.tag);
+        //Debug.Log("物品拾取" + collision.gameObject.tag);
         if (collision.gameObject.CompareTag("Player"))
         {
             Debug.Log(gameObject.name);
