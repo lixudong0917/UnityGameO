@@ -16,6 +16,7 @@ public class playerDemage : MonoBehaviour
     public Transform hammerHead;
     public Transform enemyBody;
     private float maxRange = 2.0f;
+
     // Start is called before the first frame update
 
     private void Awake()
@@ -28,6 +29,7 @@ public class playerDemage : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1f;
+
     }
 
     // Update is called once per frame
@@ -63,6 +65,8 @@ public class playerDemage : MonoBehaviour
             enemyBody.GetComponent<Rigidbody2D>().velocity = Vector2.ClampMagnitude(
                 enemyBody.GetComponent<Rigidbody2D>().velocity, 6);
             results[0].GetComponent<enemyController>().DealDamage(playerDmgValue);
+            //攻击音效
+            gameObject.GetComponent<PlayerAudio>().Attack();
         }
     }
     private void FixedUpdate()
@@ -74,6 +78,8 @@ public class playerDemage : MonoBehaviour
     {
         if (canDemage)
         {
+            //收到攻击音效
+            gameObject.GetComponent<PlayerAudio>().GetDemage();
             health -= demageValue;
             if (health > 0)
             {
@@ -88,7 +94,6 @@ public class playerDemage : MonoBehaviour
             canDemage = false; 
             StartCoroutine(WaitForDemage());
         }
-
     }
 
     private IEnumerator EndGame()
