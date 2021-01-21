@@ -4,28 +4,46 @@ using UnityEngine;
 
 public class PlayerAudio : MonoBehaviour
 {
-    //音源AudioSource相当于播放器，而音效AudioClip相当于磁带
+   
     public AudioSource audio;
-    public AudioClip forceAudio;//这里我要给主角添加跳跃的音效
+    private AudioClip forceAudio;
+    private AudioClip hiccupAudio;
+    private AudioClip ohhAudio;
     public bool moveFlag;
+
     private void Awake()
     {
         //给对象添加一个AudioSource组件
         audio = gameObject.AddComponent<AudioSource>();
         //设置不一开始就播放音效
         audio.playOnAwake = false;
-        //加载音效文件，我把跳跃的音频文件命名为jump
+        //加载音效文件
         forceAudio = Resources.Load<AudioClip>("Force");
-        print(forceAudio);
+        hiccupAudio = Resources.Load<AudioClip>("Hiccup");
+        ohhAudio = Resources.Load<AudioClip>("Ohh");
     }
     void Update()
     {
-        moveFlag = gameObject.GetComponent<PlayerControl>().isMoving;
+        moveFlag = gameObject.GetComponent<PlayerControl>().isMoving; //获取人物运动状态
         //print(moveFlag);
         if (moveFlag)
         {
-            audio.clip = forceAudio;
-            //播放音效
+            int musicNum = Random.Range(0, 3);
+            //print(musicNum);
+            //随机播放
+            switch (musicNum)
+            {
+                case 0:
+                    audio.clip = forceAudio;
+                    break;
+                case 1:
+                    audio.clip = hiccupAudio;
+                    break;
+                case 2:
+                    audio.clip = ohhAudio;
+                    break;
+            }
+            //print(audio.clip);
             audio.Play();
             gameObject.GetComponent<PlayerControl>().isMoving = false;
         }
