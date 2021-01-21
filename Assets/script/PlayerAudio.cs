@@ -9,6 +9,9 @@ public class PlayerAudio : MonoBehaviour
     private AudioClip forceAudio;
     private AudioClip hiccupAudio;
     private AudioClip ohhAudio;
+    private AudioClip attackAudio;
+    private AudioClip getDemage1;
+    private AudioClip getDemage2;
     public bool moveFlag;
 
     private void Awake()
@@ -21,6 +24,9 @@ public class PlayerAudio : MonoBehaviour
         forceAudio = Resources.Load<AudioClip>("Force");
         hiccupAudio = Resources.Load<AudioClip>("Hiccup");
         ohhAudio = Resources.Load<AudioClip>("Ohh");
+        attackAudio = Resources.Load<AudioClip>("Attack1");
+        getDemage1 = Resources.Load<AudioClip>("GetDemage1");
+        getDemage2 = Resources.Load<AudioClip>("GetDemage2");
     }
     void Update()
     {
@@ -47,5 +53,24 @@ public class PlayerAudio : MonoBehaviour
             audio.Play();
             gameObject.GetComponent<PlayerControl>().isMoving = false;
         }
+    }
+    public void Attack()
+    {
+        audio.clip = attackAudio;
+        audio.Play();
+    }
+    public void GetDemage()
+    {
+        int randomNum = Random.Range(0,2);
+        switch (randomNum)
+        {
+            case 0:
+                audio.clip = getDemage1;
+                break;
+            case 1:
+                audio.clip = getDemage2;
+                break;
+        }
+        audio.Play();
     }
 }

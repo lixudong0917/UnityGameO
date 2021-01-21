@@ -42,10 +42,19 @@ public class enemyController : MonoBehaviour
     private void FixedUpdate()
     {
         //print("isColid"+isColide);
+        //敌人移动
         if (!stopFlag)
         {
-            transform.position = Vector2.MoveTowards(transform.position, playerPos.position, speed * Time.deltaTime);
-            enemyAnimtor.SetInteger("Animation_Int", 1);
+            float dist = Vector3.Distance(transform.position, playerPos.position);
+            if (dist < 3.0f) //距离小于3时开始移动
+            {
+                transform.position = Vector2.MoveTowards(transform.position, playerPos.position, speed * Time.deltaTime);
+                enemyAnimtor.SetInteger("Animation_Int", 1);
+            }
+            else
+            {
+                enemyAnimtor.SetInteger("Animation_Int", 0);
+            }
         }
         Vector3 EandPVec = transform.position - playerPos.position;
         if(EandPVec.x > 0)
@@ -65,7 +74,7 @@ public class enemyController : MonoBehaviour
             stopFlag = true;
             enemyAnimtor.SetInteger("Animation_Int", 2);
             GameObject.Find("Player").GetComponent<playerDemage>().DealDamage(enemyDmgValue);
-            StartCoroutine(WaitForAttack());  
+            StartCoroutine(WaitForAttack());
         }
     }
 

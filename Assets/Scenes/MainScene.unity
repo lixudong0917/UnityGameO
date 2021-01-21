@@ -5406,6 +5406,7 @@ GameObject:
   - component: {fileID: 290370114}
   - component: {fileID: 290370115}
   - component: {fileID: 290370117}
+  - component: {fileID: 290370116}
   m_Layer: 2
   m_Name: Player
   m_TagString: Player
@@ -5446,6 +5447,7 @@ MonoBehaviour:
   maxRange: 0.9
   jump: 100
   weaponUse: 0
+  isMoving: 0
 --- !u!114 &290370115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5465,6 +5467,20 @@ MonoBehaviour:
   beatBackForce: 20
   hammerHead: {fileID: 720087029}
   enemyBody: {fileID: 0}
+--- !u!114 &290370116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 290370112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92dadbaedd3134b409009e8f6eb37b4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audio: {fileID: 0}
+  moveFlag: 0
 --- !u!114 &290370117
 MonoBehaviour:
   m_ObjectHideFlags: 0
